@@ -5,12 +5,7 @@ import SignInPage from './MyComponents/SignInPage';
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-
-import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
-
-const auth = getAuth()
-const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
+import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, signOut } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -27,13 +22,35 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app); // eslint-disable-line no-unused-vars
 
+const auth = getAuth()
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+
 function App() {
 
   const [user, setUser] = useState(null);
 
+  const signInUser = async (provider)=>{
+    try{
+      const result = await signInWithPopup(auth,provider);
+      console.log(provider,result.user);
+      setUser(result.user);
+    }catch(e){
+      console.error(e);
+    }
+  }
+
+  const signInWithGoogle = ()=> signInUser(googleProvider);
+  const signInWithFacebook = ()=> signInUser(facebookProvider);
+  const signOutUser = ()=> {
+    signOut(auth);
+    setUser(null);
+  };  
+
   return (
     <div className="App font-nunito bg-black text-neutral-200">
-      {!user?<SignInPage />:""}
+      {!user?<SignInPage signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} />:""}
+      {user? <button className='p-4' onClick={signOutUser}>Sign out</button> :""}
     </div>
   );
 }
