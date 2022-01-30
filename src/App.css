@@ -1,0 +1,12 @@
+.yellow-gradient-section {
+    opacity: 0.99;
+  background: rgb(245, 158, 11);
+  background: radial-gradient(
+    ellipse at -200% -100%,
+    rgba(245, 158, 11, 1) 10%,
+    rgba(0, 0, 0, 0.7) 80%,
+    rgba(0, 0, 0, 0.8) 90%,
+    rgba(0, 0, 0, 0.9) 95%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}

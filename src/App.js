@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import './App.css';
 import SignInPage from './MyComponents/SignInPage';
+import AppPage from './MyComponents/AppPage';
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -49,8 +50,8 @@ function App() {
 
   return (
     <div className="App font-nunito bg-black text-neutral-200">
-      {!user?<SignInPage signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} />:""}
-      {user? <button className='p-4' onClick={signOutUser}>Sign out</button> :""}
+      {!user?<SignInPage signInWithGoogle={signInWithGoogle} signInWithFacebook={signInWithFacebook} />:<button className='hidden' onClick={signOutUser}>Sign Out</button>}
+      {user? <AppPage />:""}
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function SignInPage({ signInWithGoogle, signInWithFacebook }) {
   return (
     <div className="container h-screen mx-auto flex flex-col items-center">
       <div className="login-image overflow-hidden relative w-full h-3/6 flex justify-center items-center">
-        <img className="opacity-10 aspect-square mt-20 overflow-hidden" src={SignInTopImage} alt="sign in" />
+        <img className="opacity-20 aspect-square mt-20 overflow-hidden" src={SignInTopImage} alt="sign in" />
         <div className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-900 absolute brand left-2/4 bottom-3 -translate-x-1/2 mb-2 text-5xl font-black">
           vMark
         </div>
